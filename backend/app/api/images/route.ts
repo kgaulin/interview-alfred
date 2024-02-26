@@ -3,8 +3,6 @@ import { images } from "@/drizzle/schema";
 import { createId } from "@paralleldrive/cuid2";
 import { NextRequest, NextResponse } from "next/server";
 
-export const config = { runtime: "Edge" };
-
 export async function POST(request: NextRequest) {
   const data = await request.formData();
   const file: File | null = data.get("file") as unknown as File;
