@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
   const name: string | null = data.get("name") as string | null;
 
   if (!file || !name) {
-    return NextResponse.json({ success: false });
+    return NextResponse.json("file or name null", { status: 400 });
   }
 
   const bytes = await file.arrayBuffer();
@@ -17,13 +17,18 @@ export async function POST(request: NextRequest) {
 
   const date = new Date(+new Date() + 60000 * 0.5);
 
+  const id = createId();
+
   await db.insert(images).values({
-    id: createId(),
+    id: id,
     file: buffer,
     name: name ?? "",
     isReady: date.getTime().toString(),
   });
-  return NextResponse.json({ success: true }, { status: 201 });
+  return NextResponse.json(
+    { id: id, name: name, status: "processing" },
+    { status: 201 }
+  );
 }
 
 const isReady = (date: string | null) => {
