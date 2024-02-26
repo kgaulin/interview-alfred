@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "push": "drizzle-kit push:sqlite"
   },
   "dependencies": {
     "@libsql/client": "^0.5.2",
+    "@paralleldrive/cuid2": "^2.2.2",
     "drizzle-orm": "^0.29.4",
     "next": "14.1.0",
     "react": "^18",

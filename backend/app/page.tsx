@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function UploadForm() {
   const [file, setFile] = useState<File>();
-  const [name, setName] = useState<string>();
+  const [name, setName] = useState<string>("");
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
