@@ -18,7 +18,7 @@ const fetchImages = async () => {
 const { data: images, isQueryLoading } = useQuery({
   queryKey: ['images'],
   queryFn: fetchImages,
-  refetchInterval: 1000*6,
+  refetchInterval: 1000*6,  // Refetch de la donnée toutes les 6 secondes pour avoir le status le plus récent
   notifyOnChangeProps: ['data'],
 });
 
@@ -107,7 +107,6 @@ const deleteImage = async (imageId: string) => {
         <Input v-model="formData.name" type="text" placeholder="Name" />
         <Input type="file" @change="handleFileChange" />
         <Button type="submit">Soumettre</Button>
-
       </form>
     </div>
 
@@ -119,10 +118,9 @@ const deleteImage = async (imageId: string) => {
       <Card v-for="(image, index) in images" :key="index">
         <CardContent class="flex justify-between">
           <div>
-            <CardTitle> {{ image.id }}</CardTitle>
+            <CardTitle> {{ image.name }}</CardTitle>
             <Label> {{ image.status }}</Label>
           </div>
-
           <button @click="deleteImage(image.id)">Supprimer l'image</button>
         </CardContent>
 
